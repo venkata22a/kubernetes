@@ -9,4 +9,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: traefik-account
-    namespace: default
+    namespace: ingress-traefik
