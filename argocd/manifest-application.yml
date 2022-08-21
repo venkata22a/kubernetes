@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/venkata22a/kubernetes.git
     targetRevision: HEAD
-    path: argocd
+    path: argocd-source-manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: test-argocd
