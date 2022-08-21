@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  namespace: test
+  labels:
+    app: cat
+    service: payment
+  annotations:
+    test: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cat
+      service: payment
+  template:
+    metadata:
+      labels:
+        app: cat
+        service: payment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8089
+          protocol: TCP

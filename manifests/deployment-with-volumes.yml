@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-volume
+  namespace: test
+  labels:
+    app: citi
+  annotations:
+    test: test
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: citi
+  template:
+    metadata:
+      labels: 
+        app: citi
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - name: test-configmap
+          mountPath: /mnt/
+        # - name: test-secret
+        #   mountPath: /mnt/
+      volumes:
+      - name: test-configmap
+        configMap:
+          name: test-configmap
+          items:
+          - key: nginxmap
+            path: log_level
+      # - name: test-secret
+      #   secret:
+      #     secretName: test-secret
+  
